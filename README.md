@@ -1,13 +1,26 @@
-    var a = () => {
-      return element.results.map((value) => {
-        var sep = value.outcome.split("");
-        var letter = sep[0].toUpperCase();
-        if (letter == "W") {
-          return <span className="green"></span>;
-        } else if (letter == "D") {
-          return <span className="grey"></span>;
-        } else if (letter == "L") {
-          return <span className="red"></span>;
-        }
-      });
-    };
+.green {
+  height: 20px;
+  width: 20px;
+  background-color: green;
+  border-radius: 50%;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+.red {
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+.grey {
+  height: 20px;
+  width: 20px;
+  background-color: grey;
+  border-radius: 50%;
+  margin-left: 30px;
+  display: inline-block;
+}
