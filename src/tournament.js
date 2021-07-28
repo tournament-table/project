@@ -45,7 +45,7 @@ function TournamentTable(props) {
         </tr>
       </thead>
       {regularLeagueStandings(a)}
-      {homeregularLeagueStandings(a, props.type)}
+      {/* {homeregularLeagueStandings(a, props.type)} */}
       {topLeagueStandings(a, b)}
     </table>
   );

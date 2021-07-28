@@ -5,28 +5,22 @@ import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
 function App() {
   return (
     <body>
-      <Tabs>
-        <TabList className="tablist">
+      <Tabs className="tournament-menu">
+        <TabList className="tab-menu">
           <Tab className="tabs">Standings</Tab>
           <Tab className="tabs">Home</Tab>
           <Tab className="tabs">Away</Tab>
         </TabList>
-        <div className="table">
-          <TabPanel>
-            <TournamentTable id="47" />
-          </TabPanel>
-          <TabPanel>
-            <TournamentTable id="47" type="home" />
-          </TabPanel>
-          <TabPanel>Away info</TabPanel>
-        </div>
+        <TabPanel>
+          <TournamentTable id="47" />
+        </TabPanel>
+        <TabPanel>Home Standings</TabPanel>
+        <TabPanel>Away Standings</TabPanel>
       </Tabs>
     </body>
   );
 }
-{
-  /* <TournamentTable id="42" /> */
-}
+
 {
   /* <TournamentTable id="46" /> 
           <TournamentTable id="42" seasonId="869802" />
