@@ -1,8 +1,27 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TournamentTable from "./tournament";
 import { Tab, TabList, Tabs, TabPanel } from "react-tabs";
+
+/*
+Dropdown done!!!
+
+1) pass id from  <option>{item}</option> to <TournamentTable id={id} typeId="" />
+
+*non-prioritized*
+pass type from  <option>{item}</option> to <TournamentTable id={id} typeId="" />
+
+ */
+
 function App() {
+  var obj = {
+    leagues: { EPL: 47, Suplerliga: 46, "1 Division": 85 },
+
+    type: ["home", "away"],
+  };
+
+  const [id, setId] = useState();
+
   return (
     <body>
       <Tabs className="tournament-menu">
@@ -11,26 +30,29 @@ function App() {
           <Tab className="tabs">Home</Tab>
           <Tab className="tabs">Away</Tab>
         </TabList>
+
         <TabPanel>
-          <TournamentTable id="47" />
+          <TournamentTable id={{ id }} typeId="" />
         </TabPanel>
-        <TabPanel>Home Standings</TabPanel>
-        <TabPanel>Away Standings</TabPanel>
+
+        <TabPanel>
+          <TournamentTable id={{ id }} typeId="home" />
+        </TabPanel>
+
+        <TabPanel>
+          <TournamentTable id={{ id }} typeId="away" />
+        </TabPanel>
       </Tabs>
+      <label>
+        Select a league
+        <select onChange={setId(this.state.value)}>
+          {Object.keys(obj.leagues).map((item) => {
+            return <option value={obj.item}>{item}</option>;
+          })}
+        </select>
+      </label>
     </body>
   );
-}
-
-{
-  /* <TournamentTable id="46" /> 
-          <TournamentTable id="42" seasonId="869802" />
-        <TournamentTable id="42" seasonId="869803" />
-        <TournamentTable id="42" seasonId="869804" />
-        <TournamentTable id="42" seasonId="869805" />
-        <TournamentTable id="42" seasonId="869806" />
-        <TournamentTable id="42" seasonId="869807" />
-        <TournamentTable id="42" seasonId="869808" />
-  */
 }
 
 export default App;

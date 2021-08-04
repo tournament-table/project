@@ -1,15 +1,24 @@
 import React from "react";
-import regularLeagueStandings from "./regularLeagueStandings";
-import topLeagueStandings from "./topLeagueStandings";
-import homeregularLeagueStandings from "./typeRegStands";
+import pic from "../src/teamlogo.png";
+const axios = require("axios");
+const { useState, useEffect } = require("react");
 
-function TournamentTable(props) {
-  var a = props.id;
-  var b = props.seasonId;
-  var c = props.type;
+function TournamentTable({ id, typeId }) {
+  console.log(id, typeId);
+
+  const [info, setInfo] = useState([]);
+  const url = `https://ss2.tjekscores.dk/tournaments/${id}/standings?&addResults=true&resultsLimit=6&type=${typeId}&form=last`;
+  useEffect(
+    () =>
+      axios.get(url).then((response) => {
+        console.log(response.data);
+        setInfo(response.data);
+      }),
+    [url]
+  );
 
   return (
-    <table>
+    <table style={{ marginTop: "50px" }}>
       <thead>
         <tr>
           <th>
@@ -21,8 +30,8 @@ function TournamentTable(props) {
           <th>
             <span></span>
           </th>
-          <th style={{ textAlign: "right" }}>
-            <span>M</span>
+          <th>
+            <span style={{ marginLeft: "500px" }}>M</span>
           </th>
           <th>
             <span>W</span>
@@ -44,9 +53,61 @@ function TournamentTable(props) {
           </th>
         </tr>
       </thead>
-      {regularLeagueStandings(a)}
-      {/* {homeregularLeagueStandings(a, props.type)} */}
-      {topLeagueStandings(a, b)}
+      <tbody style={{ alignSelf: "end" }}>
+        {info.map((element) => {
+          var formInspector = () => {
+            return element.results.map((value) => {
+              var check = value.outcome;
+              if (check === "win") {
+                return <span className="green"></span>;
+              } else if (check === "draw") {
+                return <span className="grey"></span>;
+              } else if (check === "loss") {
+                return <span className="red"></span>;
+              }
+            });
+          };
+
+          return (
+            <tr>
+              <td>
+                <span>{element.rank}</span>
+              </td>
+              <td>
+                <span>
+                  <img src={pic} alt="club" />
+                </span>
+              </td>
+              <td>
+                <span style={{ marginLeft: "20px" }}>{element.teamName}</span>
+              </td>
+              <td>
+                <span style={{ marginLeft: "500px" }}>
+                  {element.matchesPlayed}
+                </span>
+              </td>
+              <td>
+                <span>{element.matchesWon}</span>
+              </td>
+              <td>
+                <span>{element.matchesDraw}</span>
+              </td>
+              <td>
+                <span>{element.matchesLost}</span>
+              </td>
+              <td>
+                <span>
+                  {element.goalsScored} - {element.goalsConceded}
+                </span>
+              </td>
+              <td>
+                <span>{element.points}</span>
+              </td>
+              <td style={{ display: "flex" }}>{formInspector()}</td>
+            </tr>
+          );
+        })}
+      </tbody>
     </table>
   );
 }
