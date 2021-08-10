@@ -4,14 +4,13 @@ const axios = require("axios");
 const { useState, useEffect } = require("react");
 
 function TournamentTable({ id, typeId }) {
-  console.log(id, typeId);
+  console.log(`ID: ${id}, TYPE:${typeId}`);
 
   const [info, setInfo] = useState([]);
   const url = `https://ss2.tjekscores.dk/tournaments/${id}/standings?&addResults=true&resultsLimit=6&type=${typeId}&form=last`;
   useEffect(
     () =>
       axios.get(url).then((response) => {
-        console.log(response.data);
         setInfo(response.data);
       }),
     [url]

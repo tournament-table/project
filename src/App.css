@@ -93,3 +93,8 @@ select {
 option {
   text-align: center;
 }
+
+.dropdownTitle {
+  text-align: center;
+  display: block;
+}
