@@ -1,0 +1,68 @@
+.logo {
+  height: 20px;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.tabs {
+  list-style: none;
+  margin: 20px 150px;
+  font-size: 20px;
+  color: rgb(67, 125, 212);
+  cursor: pointer;
+}
+
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 2px rgb(67, 125, 212);
+  flex-direction: row;
+}
+
+.tournament-menu {
+  background-color: rgb(228, 228, 228);
+  border-radius: 2%;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.dropdown {
+  background-color: rgb(228, 228, 228);
+  padding: 15px;
+  border-radius: 5%;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0 0 10px 50px;
+  border: none;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+th {
+  text-align: left;
+}
+.results {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  &.win {
+    background-color: green;
+  }
+
+  &.loss {
+    background-color: red;
+  }
+
+  &.draw {
+    background-color: grey;
+  }
+}
